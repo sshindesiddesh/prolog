@@ -2,7 +2,7 @@ package main
 
 import (
 	"log"
-	"github.com/sshindesiddesh/prolog"
+	"github.com/sshindesiddesh/prolog/internal/server"
 )
 
 func main() {
