@@ -11,7 +11,7 @@ func NewHTTPServer(addr string) *http.Server {
 	httpsrv := newHTTPServer()
 	r := mux.NewRouter()
 	r.HandleFunc("/", httpsrv.handleProduce).Methods("POST")
-	r.HandleFunc("/", httpsrv.handleProduce).Methods("GET")
+	r.HandleFunc("/", httpsrv.handleConsume).Methods("GET")
 	return &http.Server{
 		Addr:addr,
 		Handler: r,
@@ -32,7 +32,7 @@ type ProduceRequest struct {
 	Record Record `json:"record"`
 }
 
-type ProducdResponse struct {
+type ProduceResponse struct {
 	Offset uint64 `json:"offset"`
 }
 
@@ -56,7 +56,7 @@ func (s* httpServer) handleProduce(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	res := ProducdResponse{Offset: off}
+	res := ProduceResponse{Offset: off}
 	err = json.NewEncoder(w).Encode(res)
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
