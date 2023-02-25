@@ -2,7 +2,7 @@ package main
 
 import (
 	"log"
-	"github.com/sshindesiddesh/distributed-go/examples/prolog/internal/server"
+	"github.com/sshindesiddesh/prolog"
 )
 
 func main() {
